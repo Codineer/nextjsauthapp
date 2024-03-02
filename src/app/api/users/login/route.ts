@@ -13,11 +13,11 @@ export async function POST(req: NextRequest) {
         console.log(reqBody)
         const user = await User.findOne({ email })
         if (!user) {
-            return NextResponse.json({ message: "user doesnt exists" }, { status: 404 })
+            return NextResponse.json({ message: "user doesnt exists" }, { status: 400 })
         }
         const iscorrect = await user.isPasswordCorrect(password)
         if (!iscorrect) {
-            return NextResponse.json({ message: "uauthorized,password not coreect" }, { status: 400 })
+            return NextResponse.json({ error: "uauthorized,password not coreect" }, { status: 400 })
         }
 
         //create token data
@@ -40,8 +40,8 @@ export async function POST(req: NextRequest) {
 
         return response
     }
-    catch (err: any) {
-        console.log(err)
-        return NextResponse.json({ err: err.message }, { status: 500 })
+    catch (error: any) {
+        console.log(error)
+        return NextResponse.json({ error: error.message }, { status: 500 })
     }
 }
