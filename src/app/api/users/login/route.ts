@@ -1,4 +1,5 @@
 import { connect } from '@/dbconfig/dbConfig.ts'
+import jwt from "jsonwebtoken";
 import User from "@/models/userModel.js"
 import { NextRequest, NextResponse } from "next/server"
 connect()
@@ -18,7 +19,26 @@ export async function POST(req: NextRequest) {
         if (!iscorrect) {
             return NextResponse.json({ message: "uauthorized,password not coreect" }, { status: 400 })
         }
-        return NextResponse.json({ message: "authorized", user }, { status: 200 })
+
+        //create token data
+        const tokendata = {
+            _id: user._id,
+            userName: user.userName,
+            email: user.email
+        }
+
+
+        //create token
+        const token = await jwt.sign(tokendata, process.env.TOKEN_SECRET!, { expiresIn: "1d" })
+        const response = NextResponse.json({
+            message: "login successful",
+            success: true,
+        }, { status: 200 })
+        response.cookies.set("token", token, {
+            httpOnly: true
+        })
+
+        return response
     }
     catch (err: any) {
         console.log(err)

@@ -1,26 +1,42 @@
 "use client"
 import Link from "next/link"
-import React from "react"
+import React, { useEffect } from "react"
 import { useRouter } from "next/navigation"
 import axios from "axios"
 import toast from "react-hot-toast"
 export default function loginUpPage() {
+    const router = useRouter()
     const [user, setUser] = React.useState({
         email: "",
         password: "",
     })
+    const [buttonDisabled, setButtonDisabled] = React.useState(true)
 
-    const onSignUp = async () => {
+    const [loading, setLoading] = React.useState(false)
+    useEffect(() => {
+        if (user.email.length > 0 && user.password.length > 0) {
+            setButtonDisabled(false)
+        }
+        else {
+            setButtonDisabled(true)
+        }
+
+
+    }, [user])
+
+    const onLogin = async () => {
         try {
-
+            setLoading(true)
             const response = await axios.post("/api/users/login", user)
             console.log("login success", response.data)
+            router.push("/profile")
+            toast.success("login success")
         } catch (error: any) {
             console.log(error)
             console.log("login failed", error.message)
             toast.error(error.message)
         } finally {
-
+            setLoading(false)
         }
     }
 
@@ -30,7 +46,7 @@ export default function loginUpPage() {
             <hr />
 
 
-            <label htmlFor="email">Email</label>
+            <label htmlFor="email">{loading ? "processing" : "login"}</label>
 
             <input
                 className="p-2 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:border-gray-500 text-black"
@@ -50,7 +66,7 @@ export default function loginUpPage() {
                 placeholder="password" />
             <button
                 className="p-2 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:border-gray-500 text-blue-500"
-                onClick={onSignUp}>
+                onClick={onLogin}>
                 Login
             </button>
             <Link href={"/signup"}>Go to Sign Up page</Link>
