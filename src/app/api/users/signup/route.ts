@@ -1,8 +1,7 @@
 import { connect } from '@/dbconfig/dbConfig.ts'
 import User from "@/models/userModel.js"
-import bcryptjs from "bcryptjs"
 import { NextRequest, NextResponse } from 'next/server'
-
+// import bcrypt
 connect()
 
 
@@ -20,7 +19,7 @@ export async function POST(req: NextRequest) {
         if (user) {
             return NextResponse.json({ error: "user already exists" }, { status: 400 })
         }
-        //hash password
+
         const newUser = await User.create({
 
             email,

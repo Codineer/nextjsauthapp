@@ -3,7 +3,7 @@ import Link from "next/link"
 import React from "react"
 import { useRouter } from "next/navigation"
 import { axios } from "axios"
-
+import toast from "react-hot-toast"
 export default function loginUpPage() {
     const [user, setUser] = React.useState({
         email: "",
@@ -11,7 +11,16 @@ export default function loginUpPage() {
     })
 
     const onLogin = async () => {
+        try {
 
+            const response = await axios.post("/api/users/login", user)
+            console.log("signup success", response.data)
+        } catch (error: any) {
+            console.log("signup failed", error.message)
+            toast.error(error.message)
+        } finally {
+
+        }
     }
 
     return (

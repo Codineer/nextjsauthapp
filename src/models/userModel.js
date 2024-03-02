@@ -1,11 +1,11 @@
 import mongoose from "mongoose";
-
+import bcrypt from "bcrypt";
 const userSchema = new mongoose.Schema(
     {
         userName: {
             type: String,
             required: [true, "please provide a username"],
-            unique: true,
+            // unique: true,
         },
         email: {
             type: String,
@@ -30,10 +30,18 @@ const userSchema = new mongoose.Schema(
         verifyTokenExpiry: Date,
     }
 )
-const User = mongoose.models.User || mongoose.model("User", userSchema);
+userSchema.methods.isPasswordCorrect = async function (password) {
+
+    return await bcrypt.compare(password, this.password)
+}
 userSchema.pre("save", async function (next) {
+
+    console.log("covering")
     if (!this.isModified("password")) return next();
     this.password = await bcrypt.hash(this.password, 10)
     next()
 })
+
+const User = mongoose.models.User || mongoose.model("User", userSchema);
+
 export default User;
