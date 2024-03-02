@@ -67,7 +67,7 @@ export default function loginUpPage() {
             <button
                 className="p-2 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:border-gray-500 text-blue-500"
                 onClick={onLogin}>
-                Login
+                {buttonDisabled ? "No Login" : "login"}
             </button>
             <Link href={"/signup"}>Go to Sign Up page</Link>
         </div>
