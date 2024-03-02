@@ -2,7 +2,7 @@
 import Link from "next/link"
 import React from "react"
 import { useRouter } from "next/navigation"
-import { axios } from "axios"
+import axios from "axios"
 import toast from "react-hot-toast"
 export default function loginUpPage() {
     const [user, setUser] = React.useState({
@@ -10,13 +10,14 @@ export default function loginUpPage() {
         password: "",
     })
 
-    const onLogin = async () => {
+    const onSignUp = async () => {
         try {
 
             const response = await axios.post("/api/users/login", user)
-            console.log("signup success", response.data)
+            console.log("login success", response.data)
         } catch (error: any) {
-            console.log("signup failed", error.message)
+            console.log(error)
+            console.log("login failed", error.message)
             toast.error(error.message)
         } finally {
 
@@ -49,7 +50,7 @@ export default function loginUpPage() {
                 placeholder="password" />
             <button
                 className="p-2 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:border-gray-500 text-blue-500"
-                onClick={onLogin}>
+                onClick={onSignUp}>
                 Login
             </button>
             <Link href={"/signup"}>Go to Sign Up page</Link>
