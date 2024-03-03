@@ -3,7 +3,7 @@ import Link from 'next/link'
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import { useRouter } from 'next/navigation'
-const forgetPasswordPage = () => {
+const ForgetPasswordPage = () => {
     const [email, setEmail] = useState({ email: "" })
     const router = useRouter()
     const [buttonDisabled, setButtonDisabled] = useState(true)
@@ -36,4 +36,4 @@ const forgetPasswordPage = () => {
     )
 }
 
-export default forgetPasswordPage
+export default ForgetPasswordPage

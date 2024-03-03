@@ -2,7 +2,7 @@
 import React, { useEffect } from 'react'
 import { useState } from 'react'
 import axios from 'axios'
-const page = () => {
+const Page = () => {
     const [token, setToken] = useState("")
     const [password, setPassword] = useState("")
     useEffect(() => {
@@ -33,4 +33,4 @@ const page = () => {
 
 }
 
-export default page
+export default Page
