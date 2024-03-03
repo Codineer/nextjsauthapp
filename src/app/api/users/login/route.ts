@@ -12,7 +12,7 @@ export async function POST(req: NextRequest) {
         console.log(reqBody)
         const user = await User.findOne({ email })
         if (!user) {
-            return NextResponse.json({ message: "user doesnt exists" }, { status: 400 })
+            return NextResponse.json({ error: "user doesnt exists" }, { status: 400 })
         }
         const iscorrect = await user.isPasswordCorrect(password)
         if (!iscorrect) {

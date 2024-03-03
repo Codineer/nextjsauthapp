@@ -14,8 +14,8 @@ const page = () => {
             router.push("/login")
         }
         catch (error: any) {
-            console.log(error.message)
-            toast.error(error.message)
+            console.log(error.response.data.error)
+            toast.error(error.response.data.error)
         }
     }
     const getUserDetails = async () => {

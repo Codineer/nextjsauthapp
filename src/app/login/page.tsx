@@ -33,8 +33,8 @@ export default function loginUpPage() {
             toast.success("login success")
         } catch (error: any) {
             console.log(error)
-            console.log("login failed", error.message)
-            toast.error(error.message)
+            console.log("login failed", error.response.data.error)
+            toast.error(error.response.data.error)
         } finally {
             setLoading(false)
         }
@@ -70,6 +70,7 @@ export default function loginUpPage() {
                 {buttonDisabled ? "No Login" : "login"}
             </button>
             <Link href={"/signup"}>Go to Sign Up page</Link>
+            <Link href={"/forgotpassword"}>Forget Password?</Link>
         </div>
     )
 }
