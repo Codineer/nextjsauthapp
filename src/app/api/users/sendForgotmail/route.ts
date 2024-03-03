@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { connect } from '@/dbconfig/dbConfig.ts'
+import { connect } from '@/dbconfig/dbConfig'
 import User from "@/models/userModel";
 import { sendEmail } from "@/helpers/mailer";
 connect()

@@ -1,4 +1,4 @@
-import { connect } from '@/dbconfig/dbConfig.ts'
+import { connect } from '@/dbconfig/dbConfig'
 import jwt from "jsonwebtoken";
 import User from "@/models/userModel.js"
 import { NextRequest, NextResponse } from "next/server"
