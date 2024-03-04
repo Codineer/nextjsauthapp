@@ -2,7 +2,7 @@
 import Image from "next/image";
 import { useState, useEffect } from "react";
 import UserContext from "@/contexts/musiccontext";
-import Albums from "@/components/sitecomponents/albums";
+
 export default function MusicPageLayout({
     children,
 }: Readonly<{
@@ -10,6 +10,9 @@ export default function MusicPageLayout({
 }>) {
 
     const [currentAlbumSongs, setCurrentAlbumSongs] = useState([]);
+    useEffect(() => {
+
+    }, [])
 
     return (
         <UserContext.Provider value={[{ currentAlbumSongs, setCurrentAlbumSongs }]}>
@@ -28,10 +31,14 @@ export default function MusicPageLayout({
                                     <div></div>
                                 ))}
                             </div>
-
                         </div>
                     </div>
-                    <div className='h-full border border-white w-full'></div>
+                    <div className='h-full border border-white w-full'>
+                        <nav className="h-[50px] border-b-[1px] w-full ">
+
+                        </nav>
+                        {children}
+                    </div>
                 </div>
             </div>
         </UserContext.Provider>

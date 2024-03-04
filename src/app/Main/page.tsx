@@ -1,12 +1,14 @@
-import React from 'react'
-
+"use client"
+import React, { useEffect } from 'react'
+import Likedalbums from '@/components/sitecomponents/likedalbums'
 const MainPage = () => {
-    return (
-        <div>
-            <div className='w-screen h-screen bg-black text-white flex gap-2 p-2'>
-                <div className='h-full border border-white w-[34rem]'></div>
-                <div className='h-full border border-white w-full'></div>
 
+
+    return (
+        <div className='p-9'>
+            <h1 className='font-extrabold text-4xl'>Most Liked</h1>
+            <div className='w-full'>
+                <Likedalbums />
             </div>
         </div>
     )
