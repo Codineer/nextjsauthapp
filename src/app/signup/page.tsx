@@ -29,12 +29,14 @@ export default function SignUpPage() {
     const [loading, setLoading] = React.useState(false)
 
     const onSignup = async () => {
+        setButtonDisabled(true)
         try {
             setLoading(true);
             const response = await axios.post("/api/users/signup", user)
             console.log("signup success", response.data)
             router.push("/login")
         } catch (error: any) {
+            setButtonDisabled(false)
             console.log("signup failed", error.response.data.error)
             toast.error(error.response.data.error)
         } finally {
@@ -90,7 +92,7 @@ export default function SignUpPage() {
                     </form>
                 </CardContent>
                 <CardFooter className="flex justify-between">
-                    <Button variant="outline" onClick={onSignup}>{buttonDisabled ? "No signup" : "Signup"}</Button>
+                    <Button variant="outline" onClick={buttonDisabled ? undefined : onSignup}>{buttonDisabled ? "No signup" : "Signup"}</Button>
                     {/* <Button>Deploy</Button> */}
                     <Link href={"/login"}>
                         <Button>

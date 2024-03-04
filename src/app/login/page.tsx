@@ -25,6 +25,7 @@ export default function LoginUpPage() {
     }, [user])
 
     const onLogin = async () => {
+        setButtonDisabled(true)
         try {
             setLoading(true)
             const response = await axios.post("/api/users/login", user)
@@ -32,6 +33,7 @@ export default function LoginUpPage() {
             router.push("/profile")
             toast.success("login success")
         } catch (error: any) {
+            setButtonDisabled(false)
             console.log(error)
             console.log("login failed", error.response.data.error)
             toast.error(error.response.data.error)
@@ -66,7 +68,7 @@ export default function LoginUpPage() {
                 placeholder="password" />
             <button
                 className="p-2 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:border-gray-500 text-blue-500"
-                onClick={onLogin}>
+                onClick={buttonDisabled ? undefined : onLogin}>
                 {buttonDisabled ? "No Login" : "login"}
             </button>
             <Link href={"/signup"}>Go to Sign Up page</Link>
