@@ -16,9 +16,9 @@ export default function MusicPageLayout({
 
     return (
         <UserContext.Provider value={[{ currentAlbumSongs, setCurrentAlbumSongs }]}>
-            <div>
-                <div className='w-screen h-screen bg-black text-white flex gap-2 p-2'>
-                    <div className='h-full border border-white w-[34rem] p-2 flex flex-col gap-2'>
+            <div className="" >
+                <div className='w-screen h-screen bg-black text-white grid gap-2 p-2' style={{ gridTemplateColumns: "350px 1fr" }}>
+                    <div className='h-full border border-white p-2 flex flex-col gap-2'>
                         <div className="w-full h-auto p-2 border border-white">
                             <Image alt="" quality="100" width={100} height={20} src="/images/logo.png" />
                             <h1>Home</h1>
@@ -33,7 +33,7 @@ export default function MusicPageLayout({
                             </div>
                         </div>
                     </div>
-                    <div className='h-full border border-white w-full'>
+                    <div className='h-full border border-white ' >
                         <nav className="h-[50px] border-b-[1px] w-full ">
 
                         </nav>
