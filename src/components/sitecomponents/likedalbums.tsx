@@ -57,17 +57,18 @@ const Likedalbums = () => {
                     } : undefined} />
                 </div>
             </nav>
+
             <div className="song-list flex gap-4 flex-wrap" >
 
 
                 {sliced.map((songData: any) =>
                 (<>
-
                     <MusicCard key={songData._id} songInfo={songData} />
-
                 </>
                 ))
                 }
+
+
             </div>
 
         </>

@@ -20,6 +20,7 @@ const config = {
     extend: {
       backgroundImage: {
         'custom-background': "url('https://i.pinimg.com/originals/a8/47/c0/a847c0a42b4631d4a296185d3e756d82.png')",
+        'custom-background-main': "url('https://www.hdwallpapers.in/download/stars_blue_sky_mountains_reflection_on_water_anime_background_4k_hd_anime_background-HD.jpg')",
       },
       fontFamily: {
         sans: ["var(--font-sans)", ...fontFamily.sans],

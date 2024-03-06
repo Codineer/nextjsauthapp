@@ -15,10 +15,10 @@ const MusicCard = ({ songInfo }: any) => {
                 />
             </div>
             <div className="text-center text-white font-medium mt-3 overflow-ellipsis text-lg" style={{ textOverflow: 'ellipsis', overflow: 'hidden' }}>
-                {songInfo.songName}
+                {songInfo.songName || songInfo.album}
             </div>
             <div className="text-center text-stone-600" style={{ textOverflow: 'ellipsis', overflow: 'hidden' }}>
-                {songInfo.artist}
+                {songInfo.artist || ""}
             </div>
 
         </div>
