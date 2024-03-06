@@ -1,24 +1,19 @@
 import MusicCard from './MusicCard'
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useCallback } from 'react'
 import axios from 'axios'
 import { ChevronRight, ChevronLeft } from 'lucide-react'
 const Likedalbums = () => {
-    let noOfSet = 0
+    const [noOfSet, setnoOfSet] = useState(0)
     const [sliced, setsliced] = useState([])
     const [albumSetIndex, setAlbumSetIndex] = useState(0)
     const [songs, setSongs] = useState([])
-    const [isDisabled, setDisabled] = useState(true)
     const [albumImage, setAlbumImage] = useState("")//album not needed beacuse i will be showing only songs from love album
     const pullsongsfromalbums = async (album: any) => {
         try {
             const res = await axios.post('/api/music/displayalbums', { album: album })
-            noOfSet = Math.floor(res.data.songs.length / 5) + 1
-            console.log(res.data.songs, "hazrat")
+            setnoOfSet(Math.floor(res.data.songs.length / 5))
             setSongs(res.data.songs)
-            const startIndex = albumSetIndex;
-            const endIndex = (albumSetIndex * 5) + 5;
-            setsliced(res.data.songs.slice(startIndex, endIndex));
-            setDisabled(false)
+
         }
         catch (err: any) {
             console.log(err.data.error)
@@ -27,13 +22,18 @@ const Likedalbums = () => {
 
         }
     }
+
+
     useEffect(() => {
 
-        const startIndex = albumSetIndex;
+
+
+        const startIndex = albumSetIndex != 0 ? (albumSetIndex * 5) : 0;
         const endIndex = (albumSetIndex * 5) + 5;
-        console.log(songs, "utkarsh")
         setsliced(songs.slice(startIndex, endIndex))
-    }, [albumSetIndex])
+
+
+    }, [albumSetIndex, songs])
 
     useEffect(() => {
         pullsongsfromalbums("love")
@@ -45,8 +45,16 @@ const Likedalbums = () => {
             <nav className='display flex justify-between pb-5'>
                 <h1 className='font-extrabold text-4xl'>Most Liked</h1>
                 <div className='flex gap-1 '>
-                    <ChevronLeft className='cursor-pointer' onClick={() => console.log("hello2")} />
-                    <ChevronRight className='cursor-pointer' onClick={() => console.log("hello")} />
+                    <ChevronLeft className='cursor-pointer' onClick={(sliced.length > 0) ? () => {
+                        if ((albumSetIndex - 1) >= 0) { setAlbumSetIndex(albumSetIndex - 1) }
+                        else { setAlbumSetIndex(noOfSet) }
+                    }
+                        : undefined} />
+                    <ChevronRight className='cursor-pointer' onClick={(sliced.length > 0) ? () => {
+                        if ((albumSetIndex + 1) <= noOfSet) {
+                            setAlbumSetIndex(albumSetIndex + 1)
+                        } else { setAlbumSetIndex(0) }
+                    } : undefined} />
                 </div>
             </nav>
             <div className="song-list flex gap-4 flex-wrap" >

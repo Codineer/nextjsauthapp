@@ -2,7 +2,7 @@
 const nextConfig = {
     // Add your configuration options here
     images: {
-        domains: ['w0.peakpx.com', 'i.pinimg.com'],
+        domains: ['res.cloudinary.com'],
     },
     // Add other configuration options as needed
 };
