@@ -1,12 +1,14 @@
 import MusicCard from './MusicCard'
-import React, { useEffect, useState, useCallback } from 'react'
+import React, { useEffect, useState, useContext } from 'react'
 import axios from 'axios'
 import { ChevronRight, ChevronLeft } from 'lucide-react'
+import SongContext from '@/contexts/songcontexrt'
 const Likedalbums = () => {
     const [noOfSet, setnoOfSet] = useState(0)
     const [sliced, setsliced] = useState([])
     const [albumSetIndex, setAlbumSetIndex] = useState(0)
     const [songs, setSongs] = useState([])
+    const currentSongInfo = useContext(SongContext)
     const [albumImage, setAlbumImage] = useState("")//album not needed beacuse i will be showing only songs from love album
     const pullsongsfromalbums = async (album: any) => {
         try {
@@ -63,7 +65,10 @@ const Likedalbums = () => {
 
                 {sliced.map((songData: any) =>
                 (<>
-                    <MusicCard key={songData._id} songInfo={songData} />
+                    <div onClick={() => { currentSongInfo[1](songData) }}>
+
+                        <MusicCard key={songData._id} songInfo={songData} />
+                    </div>
                 </>
                 ))
                 }

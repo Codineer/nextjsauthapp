@@ -7,15 +7,16 @@ export async function POST(req: NextRequest) {
     try {
         const reqBody = await req.json()
         const { album } = reqBody
-        const [Csongs, Calbums] = await connectToMongo();
+        const [Csongs, Calbums, client] = await connectToMongo();
 
         const fetchedAlbum = await Calbums.findOne({ album })
         const albumImage = fetchedAlbum.img
         const cursor = await Csongs.find({ album: fetchedAlbum._id })
         const allSongs = await cursor.toArray()
+        client.close()
         // console.log(allSongs)
         return NextResponse.json({ message: "songs retrived", albumImage, songs: allSongs }, { status: 200 })
     } catch (error: any) {
-        NextResponse.json({ error: error.message }, { status: 500 })
+        return NextResponse.json({ error: error.message }, { status: 500 })
     }
 }
