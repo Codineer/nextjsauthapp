@@ -1,11 +1,29 @@
-import React, { useRef, useState, useContext } from 'react'
+'use client'
+import React, { useRef, useState, useContext, useEffect, useCallback } from 'react'
 import Image from 'next/image';
 import { Slider } from "@/components/ui/slider"
 import { PlayIcon, PauseIcon, TrackPreviousIcon, TrackNextIcon } from '@radix-ui/react-icons';
 import "./playbar.css";
 import SongContext from '@/contexts/songcontexrt';
+
 const Playbar = () => {
+    const [src, setsrc] = useState("")
+    const audioRef = useRef(new Audio())
     const [currentSongInfo, currentSonginfofucntion]: any = useContext(SongContext)
+    useEffect(() => {
+        setsrc(currentSongInfo.songSrc);
+    }, [currentSongInfo]);
+
+    useEffect(() => {
+        if (src) {
+            audioRef.current.src = src;
+            audioRef.current.play().catch((error) => {
+                console.error('Failed to play audio:', error);
+            });
+        }
+    }, [src]);
+
+
     return (
 
         <div className='absolute bottom-0 w-full p-2 bg-white bg-opacity-35 grid grid-cols-3 gap-4 '>
