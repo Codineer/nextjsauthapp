@@ -28,6 +28,9 @@ const UserProfile = ({ params }: any) => {
     return (
 
         <div className='p-9 '>
+            <nav className='pb-5 w-full'>
+                <h1 className='font-extrabold text-4xl'>{params.id}</h1>
+            </nav>
             <div className="song-list flex gap-4 flex-wrap" >
 
 

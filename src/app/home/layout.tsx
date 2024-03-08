@@ -85,7 +85,9 @@ export default function MusicPageLayout({
                                         <DropdownMenuLabel>My Account</DropdownMenuLabel>
                                         <DropdownMenuSeparator />
                                         <DropdownMenuItem>Profile</DropdownMenuItem>
-                                        <DropdownMenuItem>Change Password</DropdownMenuItem>
+                                        <Link href="/changepassword">
+                                            <DropdownMenuItem>Change Password</DropdownMenuItem>
+                                        </Link>
                                         <DropdownMenuItem>Liked Songs</DropdownMenuItem>
                                         <DropdownMenuItem>Liked Video</DropdownMenuItem>
                                     </DropdownMenuContent>
