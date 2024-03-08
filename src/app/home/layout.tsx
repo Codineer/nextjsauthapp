@@ -68,7 +68,9 @@ export default function MusicPageLayout({
 
                                     <h1>Albums</h1>
                                 </Link>
-                                <h1>Liked Songs</h1>
+                                <Link href="/home/likedSongs">
+                                    <h1>Liked Songs</h1>
+                                </Link>
                             </div>
                             <div className="w-full p-2 border border-white">
                                 <div className="text-2xl font-semibold ">Current Album</div>
@@ -86,7 +88,9 @@ export default function MusicPageLayout({
                                         <Link href="/changepassword">
                                             <DropdownMenuItem>Change Password</DropdownMenuItem>
                                         </Link>
-                                        <DropdownMenuItem>Liked Songs</DropdownMenuItem>
+                                        <Link href="/home/likedSongs">
+                                            <DropdownMenuItem>Liked Songs</DropdownMenuItem>
+                                        </Link>
                                         <DropdownMenuItem>Liked Video</DropdownMenuItem>
                                     </DropdownMenuContent>
                                 </DropdownMenu>

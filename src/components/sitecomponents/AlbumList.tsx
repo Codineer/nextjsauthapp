@@ -8,13 +8,11 @@ const AlbumList = () => {
     const albumlist = useContext(UserContext)
     const [currentSongInfo, currentSonginfofucntion]: any = useContext(SongContext)
 
-    // console.log(albumlist[0])
     return (
         <ScrollArea className="h-[300px] w-full rounded-md">
 
             <div className='flex flex-col gap-2 py-3 overflow-auto '>
                 {albumlist[0].map((song: any) =>
-
 
                     <div onClick={() => { currentSonginfofucntion(song) }} className="grid grid-cols-4  rounded cursor-pointer bg-opacity-30 bg-red-600  ">
 
