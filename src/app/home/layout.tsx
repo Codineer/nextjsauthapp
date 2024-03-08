@@ -1,21 +1,40 @@
 "use client"
 import Image from "next/image";
-import React, { Children } from "react"
+import React, { Children, useEffect } from "react"
 import { useState } from "react";
 import Link from "next/link";
 import UserContext from "@/contexts/musiccontext";
 import AlbumList from "@/components/sitecomponents/AlbumList";
 import Playbar from "@/components/sitecomponents/playbar";
 import SongContext from "@/contexts/songcontexrt";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
+
+import axios from "axios";
 export default function MusicPageLayout({
     children,
 }: Readonly<{
     children: React.ReactNode;
 }>) {
 
-
+    const [profileData, setprofileData] = useState("")
     const [currentAlbum, setCurrentAlbum] = useState([]);
     const [currentSong, setcurrentSong] = useState({ songName: "no song" })
+    const loadProfile = async () => {
+
+        try {
+            const res: any = await axios.get("/api/users/me")
+            console.log(res)
+            setprofileData(res.data.data.userName)
+        }
+        catch (err) {
+            console.log(err)
+        }
+
+    }
+    useEffect(() => {
+        loadProfile()
+        console.log('hello')
+    }, [])
 
     return (
         <SongContext.Provider value={[
@@ -48,7 +67,16 @@ export default function MusicPageLayout({
                             </div>
                         </div>
                         <div className='h-full border border-white relative' >
-                            <nav className="h-[50px] border-b-[1px] w-full ">
+                            <nav className="h-[50px] border-b-[1px] w-full flex justify-end px-3">
+                                <div className="flex gap-2 justify-center items-center">
+                                    <h1 className="text-lg font-semibold">Welcome,{profileData}</h1>
+                                    <Avatar>
+                                        <AvatarImage src="https://github.com/shadcn.png" />
+                                        <AvatarFallback>CN</AvatarFallback>
+                                    </Avatar>
+
+                                </div>
+
                             </nav>
                             {children}
                             <Playbar />

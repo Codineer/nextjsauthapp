@@ -5,9 +5,10 @@ import Image from 'next/image';
 import { PlayIcon, PauseIcon, TrackPreviousIcon, TrackNextIcon } from '@radix-ui/react-icons';
 import "./playbar.css";
 import SongContext from '@/contexts/songcontexrt';
+import UserContext from '@/contexts/musiccontext';
 
 const Playbar = () => {
-    const [, forceUpdate] = useState();
+    const albumlist = useContext(UserContext)
     const [isPlaying, setisPlaying] = useState(false)
     const [src, setsrc] = useState("")
     const audioRef = useRef(new Audio())
@@ -45,8 +46,22 @@ const Playbar = () => {
 
         }
     }, [src]);
-
-
+    const nextSong = async () => {
+        if (albumlist[0].length) {
+            const reIndex = albumlist[0].findIndex((album: any) => album._id === currentSongInfo._id)
+            if (reIndex !== -1) {
+                currentSonginfofucntion(reIndex + 1 < albumlist[0].length ? albumlist[0][reIndex + 1] : albumlist[0][0])
+            }
+        }
+    }
+    const previousSong = async () => {
+        if (albumlist[0].length) {
+            const reIndex = albumlist[0].findIndex((album: any) => album._id === currentSongInfo._id)
+            if (reIndex !== -1) {
+                currentSonginfofucntion(reIndex - 1 >= 0 ? albumlist[0][reIndex - 1] : albumlist[0][albumlist[0].length - 1])
+            }
+        }
+    }
 
     return (
 
@@ -56,13 +71,13 @@ const Playbar = () => {
                 {currentSongInfo.songName}
             </div>
             <div className='flex gap-3 justify-center'>
-                <TrackPreviousIcon width={24} height={24} />
+                <TrackPreviousIcon width={24} height={24} className='cursor-pointer' onClick={previousSong} />
                 {isPlaying ? (
-                    <PauseIcon width={24} height={24} onClick={playAudio} />
+                    <PauseIcon width={24} height={24} className='cursor-pointer' onClick={playAudio} />
                 ) : (
-                    <PlayIcon width={24} height={24} onClick={playAudio} />
+                    <PlayIcon width={24} height={24} className='cursor-pointer' onClick={playAudio} />
                 )}
-                <TrackNextIcon width={24} height={24} />
+                <TrackNextIcon width={24} height={24} className='cursor-pointer' onClick={nextSong} />
             </div>
             <div>
                 {duration}
