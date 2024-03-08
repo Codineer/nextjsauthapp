@@ -3,6 +3,7 @@ import React, { useEffect, useState, useContext } from 'react'
 import axios from 'axios'
 import { ChevronRight, ChevronLeft } from 'lucide-react'
 import SongContext from '@/contexts/songcontexrt'
+import { ScrollArea } from '../ui/scroll-area'
 const Likedalbums = () => {
     const [noOfSet, setnoOfSet] = useState(0)
     const [sliced, setsliced] = useState([])
@@ -59,22 +60,18 @@ const Likedalbums = () => {
                     } : undefined} />
                 </div>
             </nav>
-
-            <div className="song-list flex gap-4 flex-wrap" >
-
-
-                {sliced.map((songData: any) =>
-                (<>
-                    <div onClick={() => { currentSongInfo[1](songData) }}>
-
-                        <MusicCard key={songData._id} songInfo={songData} />
-                    </div>
-                </>
-                ))
-                }
-
-
-            </div>
+            <ScrollArea className="h-[250px] w-full rounded-md " >
+                <div className="song-list flex gap-4 flex-wrap" >
+                    {sliced.map((songData: any) =>
+                    (<>
+                        <div onClick={() => { currentSongInfo[1](songData) }}>
+                            <MusicCard key={songData._id} songInfo={songData} />
+                        </div>
+                    </>
+                    ))
+                    }
+                </div>
+            </ScrollArea>
 
         </>
 

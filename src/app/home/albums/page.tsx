@@ -44,12 +44,15 @@ const AlbumPage = () => {
             </nav>
             <div className='flex gap-3 '>
                 {albums.map((album: any) =>
+
                     <Link href={`/home/albums/${album.album}`}>
                         <div onClick={() => {
                             album.album != currentAlbum ? provideSongs(album.album)
                                 : undefined
                         }}><MusicCard key={album._id} songInfo={album} /></div>
                     </Link>
+
+
                 )}
 
 
