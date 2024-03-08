@@ -7,7 +7,16 @@ import UserContext from "@/contexts/musiccontext";
 import AlbumList from "@/components/sitecomponents/AlbumList";
 import Playbar from "@/components/sitecomponents/playbar";
 import SongContext from "@/contexts/songcontexrt";
+import { GearIcon } from "@radix-ui/react-icons";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
+import {
+    DropdownMenu,
+    DropdownMenuContent,
+    DropdownMenuItem,
+    DropdownMenuLabel,
+    DropdownMenuSeparator,
+    DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu"
 
 import axios from "axios";
 export default function MusicPageLayout({
@@ -67,7 +76,19 @@ export default function MusicPageLayout({
                             </div>
                         </div>
                         <div className='h-full border border-white relative' >
-                            <nav className="h-[50px] border-b-[1px] w-full flex justify-end px-3">
+                            <nav className="h-[50px] border-b-[1px] w-full flex justify-between px-3">
+                                <DropdownMenu>
+                                    <DropdownMenuTrigger><GearIcon width={25} height={25} className="cursor-pointer" /></DropdownMenuTrigger>
+                                    <DropdownMenuContent>
+                                        <DropdownMenuLabel>My Account</DropdownMenuLabel>
+                                        <DropdownMenuSeparator />
+                                        <DropdownMenuItem>Profile</DropdownMenuItem>
+                                        <DropdownMenuItem>Change Password</DropdownMenuItem>
+                                        <DropdownMenuItem>Liked Songs</DropdownMenuItem>
+                                        <DropdownMenuItem>Liked Video</DropdownMenuItem>
+                                    </DropdownMenuContent>
+                                </DropdownMenu>
+
                                 <div className="flex gap-2 justify-center items-center">
                                     <h1 className="text-lg font-semibold">Welcome,{profileData}</h1>
                                     <Avatar>

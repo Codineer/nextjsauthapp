@@ -1,6 +1,6 @@
 
 'use client'
-import React, { useRef, useState, useContext, useEffect, useCallback } from 'react'
+import React, { useRef, useState, useContext, useEffect } from 'react'
 import Image from 'next/image';
 import { PlayIcon, PauseIcon, TrackPreviousIcon, TrackNextIcon } from '@radix-ui/react-icons';
 import "./playbar.css";

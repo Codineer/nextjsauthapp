@@ -5,6 +5,10 @@ const nextConfig = {
         domains: ['res.cloudinary.com'],
     },
     // Add other configuration options as needed
+    webpack: (config) => {
+        config.externals = [...config.externals, 'bcrypt'];
+        return config;
+    },
 };
 
 export default nextConfig;
