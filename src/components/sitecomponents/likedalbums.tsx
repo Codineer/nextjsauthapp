@@ -13,7 +13,7 @@ const Likedalbums = () => {
     const [albumImage, setAlbumImage] = useState("")//album not needed beacuse i will be showing only songs from love album
     const pullsongsfromalbums = async (album: any) => {
         try {
-            const res = await axios.post('/api/music/displayalbums', { album: album })
+            const res = await axios.post('/api/music/displayalbums', { albumId: "65e6074c2b09b710496a6c5a" })
             setnoOfSet(Math.floor(res.data.songs.length / 5))
             setSongs(res.data.songs)
 

@@ -1,16 +1,18 @@
 import connectToMongo from '@/dbconfig/musicDatabase'
 
 import { NextRequest, NextResponse } from "next/server"
-
+import mongoose from 'mongoose'
 
 export async function POST(req: NextRequest) {
     try {
         const reqBody = await req.json()
         const { albumId } = reqBody
-        console.log(albumId)
-        const [Csongs, Calbums, client] = await connectToMongo();
 
-        const fetchedAlbum = await Calbums.findOne({ _id: albumId })
+
+        const [Csongs, Calbums, client] = await connectToMongo();
+        const objectId = new mongoose.Types.ObjectId(albumId);
+
+        const fetchedAlbum = await Calbums.findOne({ _id: objectId })
         console.log(fetchedAlbum)
         // const albumImage = fetchedAlbum.img
         const cursor = await Csongs.find({ album: fetchedAlbum._id })
