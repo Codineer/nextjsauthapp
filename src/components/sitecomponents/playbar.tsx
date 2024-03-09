@@ -6,6 +6,7 @@ import { PlayIcon, PauseIcon, TrackPreviousIcon, TrackNextIcon } from '@radix-ui
 import "./playbar.css";
 import SongContext from '@/contexts/songcontexrt';
 import UserContext from '@/contexts/musiccontext';
+import provideSongs from '@/helpers/providesongs'
 
 const Playbar = () => {
     const albumlist = useContext(UserContext)

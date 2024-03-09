@@ -1,6 +1,6 @@
 "use client"
 import Image from "next/image";
-import React, { Children, useEffect } from "react"
+import React, { useEffect } from "react"
 import { useState } from "react";
 import Link from "next/link";
 import UserContext from "@/contexts/musiccontext";
@@ -24,9 +24,9 @@ export default function MusicPageLayout({
 }: Readonly<{
     children: React.ReactNode;
 }>) {
-
+    const [currentAlbum, setcurrentAlbum] = useState("")
     const [profileData, setprofileData] = useState("")
-    const [currentAlbum, setCurrentAlbum] = useState([]);
+    const [currentAlbumList, setCurrentAlbumList] = useState([]);
     const [currentSong, setcurrentSong] = useState({ songName: "no song" })
     const loadProfile = async () => {
 
@@ -51,8 +51,9 @@ export default function MusicPageLayout({
             setcurrentSong
         ]} >
             <UserContext.Provider value={[
-                currentAlbum,
-                setCurrentAlbum,
+                currentAlbumList,
+                setCurrentAlbumList,
+                currentAlbum, setcurrentAlbum
             ]}>
                 <div className="" >
                     <div className='w-screen bg-custom-background-main bg-cover bg-center bg-no-repeat h-screen bg-black text-white grid gap-2 p-2' style={{ gridTemplateColumns: "350px 1fr" }}>

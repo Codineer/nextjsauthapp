@@ -4,9 +4,9 @@ import React, { useEffect, useState, useContext } from 'react'
 import axios from 'axios'
 import UserContext from '@/contexts/musiccontext'
 import Link from 'next/link'
+import provideSongs from '@/helpers/providesongs'
 const AlbumPage = () => {
     const [albums, setAlbums] = useState<any>([])
-    const [currentAlbum, setcurrentAlbum] = useState("")
     const albumliststate = useContext(UserContext)
     const pullalbums = async () => {
 
@@ -24,17 +24,18 @@ const AlbumPage = () => {
         pullalbums()
 
     }, [])
-    const provideSongs = async (albumName: any) => {
-        try {
-            const res = await axios.post('/api/music/displayalbums', { album: albumName })
-            albumliststate[1](res.data.songs)
-            setcurrentAlbum(albumName)
 
-        }
-        catch (error: any) {
-            console.log(error.data.error)
-        }
-    }
+    // const provideSongs = async (albumName: any, setCurrentalbumList: any, setcurrentAlbumName: any) => {
+    //     try {
+    //         const res = await axios.post('/api/music/displayalbums', { album: albumName })
+    //         setCurrentalbumList(res.data.songs)
+    //         setcurrentAlbumName(albumName)
+
+    //     }
+    //     catch (error: any) {
+    //         console.log(error.data.error)
+    //     }
+    // }
 
     return (
         <div className='p-9'>
@@ -47,7 +48,7 @@ const AlbumPage = () => {
 
                     <Link href={`/home/albums/${album.album}`}>
                         <div onClick={() => {
-                            album.album != currentAlbum ? provideSongs(album.album)
+                            album.album != albumliststate[2] ? provideSongs(album.album, albumliststate[1], albumliststate[3])
                                 : undefined
                         }}><MusicCard key={album._id} songInfo={album} /></div>
                     </Link>
