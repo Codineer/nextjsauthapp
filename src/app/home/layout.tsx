@@ -24,7 +24,7 @@ export default function MusicPageLayout({
 }: Readonly<{
     children: React.ReactNode;
 }>) {
-    const [currentAlbum, setcurrentAlbum] = useState("")
+    const [currentAlbum, setcurrentAlbum] = useState([])
     const [profileData, setprofileData] = useState("")
     const [currentAlbumList, setCurrentAlbumList] = useState([]);
     const [currentSong, setcurrentSong] = useState({ songName: "no song" })

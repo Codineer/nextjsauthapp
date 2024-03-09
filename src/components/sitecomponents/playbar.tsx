@@ -17,6 +17,8 @@ const Playbar = () => {
     const [currentSongInfo, currentSonginfofucntion]: any = useContext(SongContext)
     useEffect(() => {
         setsrc(currentSongInfo.songSrc);
+        console.log(currentSongInfo.album)
+
     }, [currentSongInfo]);
 
     const playAudio = () => {
@@ -33,6 +35,7 @@ const Playbar = () => {
 
     const handleLoadedMetadata = () => {
         setDuration(audioRef.current.duration)
+        provideSongs(currentSongInfo.album, albumlist[1], albumlist[3])
 
     }
 
@@ -40,13 +43,14 @@ const Playbar = () => {
         if (src) {
             audioRef.current.src = src;
             setisPlaying(true)
+
             audioRef.current.addEventListener("loadedmetadata", handleLoadedMetadata);
             audioRef.current.play().catch((error) => {
                 console.error('Failed to play audio:', error);
             });
-
         }
     }, [src]);
+
     const nextSong = async () => {
         if (albumlist[0].length) {
             const reIndex = albumlist[0].findIndex((album: any) => album._id === currentSongInfo._id)
@@ -55,6 +59,7 @@ const Playbar = () => {
             }
         }
     }
+
     const previousSong = async () => {
         if (albumlist[0].length) {
             const reIndex = albumlist[0].findIndex((album: any) => album._id === currentSongInfo._id)

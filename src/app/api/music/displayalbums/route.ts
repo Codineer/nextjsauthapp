@@ -15,7 +15,7 @@ export async function POST(req: NextRequest) {
         const allSongs = await cursor.toArray()
         client.close()
         // console.log(allSongs)
-        return NextResponse.json({ message: "songs retrived", albumImage, songs: allSongs }, { status: 200 })
+        return NextResponse.json({ message: "songs retrived", albumImage, songs: allSongs, albumId: fetchedAlbum._id }, { status: 200 })
     } catch (error: any) {
         return NextResponse.json({ error: error.message }, { status: 500 })
     }

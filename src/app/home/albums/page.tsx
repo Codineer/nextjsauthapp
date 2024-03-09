@@ -25,18 +25,6 @@ const AlbumPage = () => {
 
     }, [])
 
-    // const provideSongs = async (albumName: any, setCurrentalbumList: any, setcurrentAlbumName: any) => {
-    //     try {
-    //         const res = await axios.post('/api/music/displayalbums', { album: albumName })
-    //         setCurrentalbumList(res.data.songs)
-    //         setcurrentAlbumName(albumName)
-
-    //     }
-    //     catch (error: any) {
-    //         console.log(error.data.error)
-    //     }
-    // }
-
     return (
         <div className='p-9'>
 
@@ -48,7 +36,7 @@ const AlbumPage = () => {
 
                     <Link href={`/home/albums/${album.album}`}>
                         <div onClick={() => {
-                            album.album != albumliststate[2] ? provideSongs(album.album, albumliststate[1], albumliststate[3])
+                            album.album != albumliststate[2][0] ? provideSongs(album._id, albumliststate[1], albumliststate[3])
                                 : undefined
                         }}><MusicCard key={album._id} songInfo={album} /></div>
                     </Link>
