@@ -10,22 +10,22 @@ const UserProfile = ({ params }: any) => {
     const [songs, setSongs] = useState([])
     const currentSongInfo = useContext(SongContext)
 
-    const pullsongsfromalbums = async (album: any) => {
-        try {
-            const res = await axios.post('/api/music/displayalbums', { album: album })
-            setSongs(res.data.songs)
+    // const pullsongsfromalbums = async (album: any) => {
+    //     try {
+    //         const res = await axios.post('/api/music/displayalbums', { album: album })
+    //         setSongs(res.data.songs)
 
-        }
-        catch (err: any) {
-            console.log(err.data.error)
-        }
-        finally {
+    //     }
+    //     catch (err: any) {
+    //         console.log(err.data.error)
+    //     }
+    //     finally {
 
-        }
-    }
-    useEffect(() => {
-        pullsongsfromalbums(params.id)
-    }, [])
+    //     }
+    // }
+    // useEffect(() => {
+    //     pullsongsfromalbums(params.id)
+    // }, [])
     return (
 
         <div className='p-9 '>

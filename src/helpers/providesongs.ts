@@ -1,10 +1,12 @@
 'use client'
 import axios from "axios"
-const provideSongs = async (albumName: any, setCurrentalbumList: any, setcurrentAlbum: any) => {
+const provideSongs = async (albumId: any, setCurrentalbumList: any, setcurrentAlbum: any) => {
+    console.log(albumId)
     try {
-        const res = await axios.post('/api/music/displayalbums', { album: albumName })
+        const res = await axios.post('/api/music/displayalbums', { albumId: albumId })
         setCurrentalbumList(res.data.songs)
-        setcurrentAlbum([albumName, res.data.albumId])
+        console.log(res.data.albumName)
+        setcurrentAlbum([res.data.albumName, albumId])
 
     }
     catch (error: any) {

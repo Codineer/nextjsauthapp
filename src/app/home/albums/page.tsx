@@ -37,7 +37,7 @@ const AlbumPage = () => {
                     <Link href={`/home/albums/${album.album}`}>
                         <div onClick={() => {
                             album.album != albumliststate[2][0] ? provideSongs(album._id, albumliststate[1], albumliststate[3])
-                                : undefined
+                                : undefined;
                         }}><MusicCard key={album._id} songInfo={album} /></div>
                     </Link>
 
