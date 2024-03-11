@@ -17,7 +17,6 @@ const Playbar = () => {
     const [currentSongInfo, currentSonginfofucntion]: any = useContext(SongContext)
     useEffect(() => {
         setsrc(currentSongInfo.songSrc);
-        console.log(currentSongInfo.album)
 
     }, [currentSongInfo]);
 
@@ -26,6 +25,7 @@ const Playbar = () => {
 
             audioRef.current.play()
             setisPlaying(true)
+
         }
         else {
             audioRef.current.pause()
@@ -33,9 +33,13 @@ const Playbar = () => {
         }
     };
 
-    const handleLoadedMetadata = () => {
+    const handleLoadedMetadata = async () => {
         setDuration(audioRef.current.duration)
-        provideSongs(currentSongInfo.album, albumlist[1], albumlist[3])
+        console.log(albumlist[2])
+        if (albumlist[2][1] !== currentSongInfo.album) {
+            console.log("hii")
+            await provideSongs(currentSongInfo.album, albumlist[1], albumlist[3])
+        }
 
     }
 
@@ -54,6 +58,7 @@ const Playbar = () => {
     const nextSong = async () => {
         if (albumlist[0].length) {
             const reIndex = albumlist[0].findIndex((album: any) => album._id === currentSongInfo._id)
+            console.log(reIndex)
             if (reIndex !== -1) {
                 currentSonginfofucntion(reIndex + 1 < albumlist[0].length ? albumlist[0][reIndex + 1] : albumlist[0][0])
             }

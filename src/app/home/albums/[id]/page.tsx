@@ -3,29 +3,34 @@ import React, { useState, useContext, useEffect } from 'react'
 import axios from 'axios'
 import MusicCard from '@/components/sitecomponents/MusicCard'
 import SongContext from '@/contexts/songcontexrt'
+import UserContext from '@/contexts/musiccontext'
 import { ScrollArea } from '@/components/ui/scroll-area'
+import provideSongs from '@/helpers/providesongs'
 
 const UserProfile = ({ params }: any) => {
     console.log(params)
     const [songs, setSongs] = useState([])
     const currentSongInfo = useContext(SongContext)
+    const albumList: any = useContext(UserContext)
+    const pullsongsfromalbums = async (album: any) => {
+        try {
+            await provideSongs(album, albumList[1], albumList[3])
 
-    // const pullsongsfromalbums = async (album: any) => {
-    //     try {
-    //         const res = await axios.post('/api/music/displayalbums', { album: album })
-    //         setSongs(res.data.songs)
+        }
+        catch (err: any) {
+            console.log(err.data.error)
+        }
+        finally {
 
-    //     }
-    //     catch (err: any) {
-    //         console.log(err.data.error)
-    //     }
-    //     finally {
-
-    //     }
-    // }
-    // useEffect(() => {
-    //     pullsongsfromalbums(params.id)
-    // }, [])
+        }
+    }
+    useEffect(() => {
+        console.log(params.id)
+        pullsongsfromalbums(params.id)
+    }, [])
+    useEffect(() => {
+        setSongs(albumList[0])
+    }, [albumList[0]])
     return (
 
         <div className='p-9 '>
@@ -42,7 +47,6 @@ const UserProfile = ({ params }: any) => {
 
 
                         <div onClick={() => { currentSongInfo[1](songData), console.log(currentSongInfo[0]) }}>
-
                             <MusicCard key={songData._id} songInfo={songData} />
                         </div>
 

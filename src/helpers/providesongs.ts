@@ -3,9 +3,9 @@ import axios from "axios"
 const provideSongs = async (albumId: any, setCurrentalbumList: any, setcurrentAlbum: any) => {
     console.log(albumId)
     try {
+
         const res = await axios.post('/api/music/displayalbums', { albumId: albumId })
         setCurrentalbumList(res.data.songs)
-        console.log(res.data.albumName)
         setcurrentAlbum([res.data.albumName, albumId])
 
     }

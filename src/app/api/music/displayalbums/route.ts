@@ -11,9 +11,8 @@ export async function POST(req: NextRequest) {
 
         const [Csongs, Calbums, client] = await connectToMongo();
         const objectId = new mongoose.Types.ObjectId(albumId);
-
         const fetchedAlbum = await Calbums.findOne({ _id: objectId })
-        console.log(fetchedAlbum)
+        console.log("hii")
         // const albumImage = fetchedAlbum.img
         const cursor = await Csongs.find({ album: fetchedAlbum._id })
         const allSongs = await cursor.toArray()

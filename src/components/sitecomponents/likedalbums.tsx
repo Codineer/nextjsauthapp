@@ -4,16 +4,21 @@ import axios from 'axios'
 import { ChevronRight, ChevronLeft } from 'lucide-react'
 import SongContext from '@/contexts/songcontexrt'
 import { ScrollArea } from '../ui/scroll-area'
+import provideSongs from '@/helpers/providesongs'
+import UserContext from '@/contexts/musiccontext'
 const Likedalbums = () => {
     const [noOfSet, setnoOfSet] = useState(0)
     const [sliced, setsliced] = useState([])
     const [albumSetIndex, setAlbumSetIndex] = useState(0)
     const [songs, setSongs] = useState([])
+    const albumlist = useContext(UserContext)
     const currentSongInfo = useContext(SongContext)
     const [albumImage, setAlbumImage] = useState("")//album not needed beacuse i will be showing only songs from love album
     const pullsongsfromalbums = async (album: any) => {
         try {
             const res = await axios.post('/api/music/displayalbums', { albumId: "65e6074c2b09b710496a6c5a" })
+            albumlist[1](res.data.songs)
+            albumlist[3]([res.data.albumName, "65e6074c2b09b710496a6c5a"])
             setnoOfSet(Math.floor(res.data.songs.length / 5))
             setSongs(res.data.songs)
 

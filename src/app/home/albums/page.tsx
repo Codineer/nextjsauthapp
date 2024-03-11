@@ -34,13 +34,10 @@ const AlbumPage = () => {
             <div className='flex gap-3 '>
                 {albums.map((album: any) =>
 
-                    <Link href={`/home/albums/${album.album}`}>
-                        <div onClick={() => {
-                            album.album != albumliststate[2][0] ? provideSongs(album._id, albumliststate[1], albumliststate[3])
-                                : undefined;
-                        }}><MusicCard key={album._id} songInfo={album} /></div>
-                    </Link>
-
+                    <div onClick={() => {
+                        album.album != albumliststate[2][0] ? provideSongs(album._id, albumliststate[1], albumliststate[3])
+                            : undefined;
+                    }}><Link href={`/home/albums/${album._id}`}><MusicCard key={album._id} songInfo={album} /></Link></div>
 
                 )}
 
