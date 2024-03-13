@@ -1,11 +1,9 @@
-import connectToMongo from '@/dbconfig/musicDatabase'
 import likedSong from '@/models/likedSong.js'
 import { NextRequest, NextResponse } from "next/server"
-import { connect } from '@/dbconfig/dbConfig'
 import mongoose from 'mongoose'
 
 
-export async function GET(req: NextRequest) {
+export async function POST(req: NextRequest) {
     try {
         try {
             await mongoose.connect(process.env.MONGO_URI!)
@@ -13,11 +11,14 @@ export async function GET(req: NextRequest) {
         catch (error: any) {
             return NextResponse.json({ error: error.message }, { status: 500 })
         }
-        const retrievedEntries = await likedSong.findOne({})
-        const likedSongs = await retrievedEntries.toArray()
+        const { uid } = await req.json()
+
+
+        const retrievedEntries = await likedSong.find({ user: uid })
+        console.log(retrievedEntries)
 
         mongoose.disconnect()
-        return NextResponse.json({ message: "songs retrived", likedSongs }, { status: 200 })
+        return NextResponse.json({ message: "songs retrived", likedSongs: retrievedEntries }, { status: 200 })
     } catch (error: any) {
         mongoose.disconnect()
         return NextResponse.json({ error: error.message }, { status: 500 })

@@ -28,7 +28,6 @@ export async function POST(req: NextRequest) {
             userName: userName.toLowerCase()
         })
 
-        console.log(newUser)
 
         await sendEmail(
             {
