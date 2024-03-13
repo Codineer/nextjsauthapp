@@ -2,7 +2,7 @@
 'use client'
 import React, { useRef, useState, useContext, useEffect } from 'react'
 import Image from 'next/image';
-import { PlayIcon, PauseIcon, TrackPreviousIcon, TrackNextIcon } from '@radix-ui/react-icons';
+import { PlayIcon, PauseIcon, TrackPreviousIcon, TrackNextIcon, HeartIcon } from '@radix-ui/react-icons';
 import "./playbar.css";
 import SongContext from '@/contexts/songcontexrt';
 import UserContext from '@/contexts/musiccontext';
@@ -90,8 +90,10 @@ const Playbar = () => {
                 )}
                 <TrackNextIcon width={24} height={24} className='cursor-pointer' onClick={nextSong} />
             </div>
-            <div>
+            <div className='justify-between flex '>
                 {duration}
+                <HeartIcon />
+
             </div>
             {/* <Slider defaultValue={[33]} max={100} step={silderval} className=' w-full absolute bottom-[100%]' /> */}
 
