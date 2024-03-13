@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const likedSongSchema = new Schema(
+const likedSongSchema = new mongoose.Schema(
     {
         song: {
             type: mongoose.Schema.Types.ObjectId,
@@ -16,5 +16,5 @@ const likedSongSchema = new Schema(
     }
 )
 
-const LikedSong = mongoose.models.User || mongoose.model("User", userSchema);
+const LikedSong = mongoose.models.LikedSong || mongoose.model("LikedSong", likedSongSchema); //
 export default LikedSong;

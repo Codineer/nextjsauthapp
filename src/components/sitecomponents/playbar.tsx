@@ -75,30 +75,34 @@ const Playbar = () => {
     }
 
     return (
-
-        <div className='absolute bottom-0 w-full p-2 bg-white bg-opacity-35 grid grid-cols-3 gap-4 '>
-            <div className='absolute bottom-[120%] left-2'><Image alt="" width={200} height={200} src={currentSongInfo.img} className="rounded-md" /></div>
-            <div className='text-xl font-semibold'>
-                {currentSongInfo.songName}
+        currentSongInfo.songName !== "no song" ? (
+            <div className='absolute bottom-0 w-full p-2 bg-white bg-opacity-35 grid grid-cols-3 gap-4 '>
+                <div>
+                    <div className='absolute bottom-[120%] left-2'>
+                        <Image alt="" width={200} height={200} src={currentSongInfo.img} className="rounded-md" />
+                    </div>
+                    <div className='text-xl font-semibold'>
+                        {currentSongInfo.songName}
+                    </div>
+                    <div className='flex gap-3 justify-center'>
+                        <TrackPreviousIcon width={24} height={24} className='cursor-pointer' onClick={previousSong} />
+                        {isPlaying ? (
+                            <PauseIcon width={24} height={24} className='cursor-pointer' onClick={playAudio} />
+                        ) : (
+                            <PlayIcon width={24} height={24} className='cursor-pointer' onClick={playAudio} />
+                        )}
+                        <TrackNextIcon width={24} height={24} className='cursor-pointer' onClick={nextSong} />
+                    </div>
+                    <div className='justify-between flex items-center pr-4'>
+                        {duration}
+                        <HeartIcon width={20} height={20} />
+                    </div>
+                </div>
             </div>
-            <div className='flex gap-3 justify-center'>
-                <TrackPreviousIcon width={24} height={24} className='cursor-pointer' onClick={previousSong} />
-                {isPlaying ? (
-                    <PauseIcon width={24} height={24} className='cursor-pointer' onClick={playAudio} />
-                ) : (
-                    <PlayIcon width={24} height={24} className='cursor-pointer' onClick={playAudio} />
-                )}
-                <TrackNextIcon width={24} height={24} className='cursor-pointer' onClick={nextSong} />
-            </div>
-            <div className='justify-between flex '>
-                {duration}
-                <HeartIcon />
-
-            </div>
-            {/* <Slider defaultValue={[33]} max={100} step={silderval} className=' w-full absolute bottom-[100%]' /> */}
-
-        </div>
-    )
+        ) : (
+            <div></div>
+        )
+    );
 }
 
 export default Playbar
