@@ -87,6 +87,16 @@ const Playbar = () => {
             console.log(err.response.data.error)
         }
     }
+    async function disLikeSong() {
+        try {
+            const res = await axios.post("/api/music/dislikesong", { currentSongInfo, uid })
+            setLiked(res.data.value)
+            console.log(res.data.message)
+        }
+        catch (err: any) {
+            console.log(err.response.data.error)
+        }
+    }
     return (
         currentSongInfo.songName !== "no song" ? (
             <div className='absolute bottom-0 w-full p-2 bg-white bg-opacity-35 grid grid-cols-3 gap-4 '>
@@ -108,7 +118,7 @@ const Playbar = () => {
                 </div>
                 <div className='justify-between flex items-center pr-4'>
                     {duration}
-                    {liked ? <HeartFilledIcon width={20} height={20} className="cursor-pointer" /> : <HeartIcon width={20} height={20} className="cursor-pointer" onClick={addLikedSong} />}
+                    {liked ? <HeartFilledIcon width={20} height={20} className="cursor-pointer" onClick={disLikeSong} /> : <HeartIcon width={20} height={20} className="cursor-pointer" onClick={addLikedSong} />}
 
                 </div>
 

@@ -14,18 +14,10 @@ export async function POST(req: NextRequest) {
             return NextResponse.json({}, { status: 200 })
         }
 
-        const fetchedData = await LikedSong.findOne({ user: uid, song: currentSongInfo._id })
-        if (fetchedData) {
-            return NextResponse.json({ message: "song already liked" }, { status: 200 })
-        }
-        const newEntry = await LikedSong.create({
-
-            song: currentSongInfo._id,
-            user: uid,
-        })
+        const fetchedData = await LikedSong.deleteOne({ user: uid, song: currentSongInfo._id })
 
 
-        return NextResponse.json({ message: newEntry, value: true }, { status: 200 })
+        return NextResponse.json({ message: "deleted", value: false }, { status: 200 })
     } catch (err) {
 
         return NextResponse.json({ error: "internal server error" }, { status: 500 })

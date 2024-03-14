@@ -51,6 +51,18 @@ export default function MusicPageLayout({
         console.log('hello')
     }, [])
 
+
+    const logout = async () => {
+        try {
+            const res = await axios.get("/api/users/logout")
+
+            router.push("/login")
+        }
+        catch (error: any) {
+            console.log(error.response.data.error)
+
+        }
+    }
     return (
         <UidContext.Provider value={[userId]}>
             <SongContext.Provider value={[
@@ -106,6 +118,9 @@ export default function MusicPageLayout({
                                                 <DropdownMenuItem>AMV Videos</DropdownMenuItem>
 
                                             </Link>
+                                            <div onClick={logout} className="cursor-pointer">
+                                                <DropdownMenuItem>Log Out</DropdownMenuItem>
+                                            </div>
                                         </DropdownMenuContent>
                                     </DropdownMenu>
 
