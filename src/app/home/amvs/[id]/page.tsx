@@ -4,6 +4,11 @@ import React, { useEffect, useState } from 'react'
 import ReactPlayer from 'react-player';
 const Page = ({ params }: any) => {
     const [video, setvideo] = useState("")
+    const playerConfig = {
+        file: {
+            forceVideo: true,
+        },
+    }
     const fetchvideo = async () => {
         const res = await axios.post("/api/music/fetchvideo", { id: params.id })
         setvideo(res.data.video)
@@ -15,13 +20,15 @@ const Page = ({ params }: any) => {
     }, [])
 
     return (
-        <div>
-
+        <div className='h-[80%] flex justify-center items-center p-4'>
+            {/* https://www.youtube.com/watch?v=YOUR_VIDEO_ID_HERE */}
             <ReactPlayer
-                url={video}
+                url={"https://www.youtube.com/watch?v=-pHfPJGatgE"}
                 controls
                 width="100%"
                 height="100%"
+                config={playerConfig}
+
             />
         </div>
     )
