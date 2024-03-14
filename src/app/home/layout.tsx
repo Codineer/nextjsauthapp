@@ -79,6 +79,9 @@ export default function MusicPageLayout({
                                     <Link href="/home/likedSongs">
                                         <h1>Liked Songs</h1>
                                     </Link>
+                                    <Link href="/home/amvs">
+                                        <h1>AMV Videos</h1>
+                                    </Link>
                                 </div>
                                 <div className="w-full p-2 border border-white">
                                     <div className="text-2xl font-semibold ">Current Album</div>

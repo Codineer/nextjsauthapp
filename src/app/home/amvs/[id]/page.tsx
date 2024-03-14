@@ -20,10 +20,9 @@ const Page = ({ params }: any) => {
     }, [])
 
     return (
-        <div className='h-[80%] flex justify-center items-center p-4'>
-            {/* https://www.youtube.com/watch?v=YOUR_VIDEO_ID_HERE */}
+        <div className='h-[80%] flex justify-center  items-center p-4'>
             <ReactPlayer
-                url={"https://www.youtube.com/watch?v=-pHfPJGatgE"}
+                url={video}
                 controls
                 width="100%"
                 height="100%"

@@ -21,7 +21,7 @@ const MyVideoComponent = () => {
                 <h1 className='font-extrabold text-4xl'>Popular Amvs</h1>
             </nav>
 
-            <div className='flex'>
+            <div className='flex flex-wrap gap-3'>
                 {videos.map((videoData: any) => <Link href={`/home/amvs/${videoData._id}`}>
 
                     <VideoCard video={videoData} />
