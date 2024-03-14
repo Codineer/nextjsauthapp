@@ -35,7 +35,7 @@ export default function MusicPageLayout({
     const loadProfile = async () => {
 
         try {
-            const res: any = await axios.get("/api/users/me")
+            const res = await axios.get("/api/users/me")
             setuserId(res.data.data._id)
             setprofileData(res.data.data.userName)
         }

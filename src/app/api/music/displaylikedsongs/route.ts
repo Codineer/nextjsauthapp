@@ -1,26 +1,32 @@
 import likedSong from '@/models/likedSong.js'
 import { NextRequest, NextResponse } from "next/server"
 import mongoose from 'mongoose'
+import { MongoClient, Db, Collection } from 'mongodb';
 
 
 export async function POST(req: NextRequest) {
     try {
-        try {
-            await mongoose.connect(process.env.MONGO_URI!)
-        }
-        catch (error: any) {
-            return NextResponse.json({ error: error.message }, { status: 500 })
-        }
+
+        // await mongoose.connect(process.env.MONGO_URI!)
+        const client: MongoClient = await MongoClient.connect(process.env.MONGO_URI!);
+        const db: Db = client.db("test");
+        const songs = db.collection("songs");
+
         const { uid } = await req.json()
-
-
         const retrievedEntries = await likedSong.find({ user: uid })
-        console.log(retrievedEntries)
+        const songsreq: any = []
+        for (const entry of retrievedEntries) {
+            const fetchedsong = await songs.findOne({ _id: entry.song })
+            songsreq.push(fetchedsong)
+        }
 
-        mongoose.disconnect()
-        return NextResponse.json({ message: "songs retrived", likedSongs: retrievedEntries }, { status: 200 })
+        return NextResponse.json({ message: "songs retrived", likedSongs: songsreq }, { status: 200 })
     } catch (error: any) {
-        mongoose.disconnect()
+
         return NextResponse.json({ error: error.message }, { status: 500 })
     }
 }
+process.on('exit', async () => {
+    await mongoose.disconnect();
+    console.log('Database connection closed');
+});
