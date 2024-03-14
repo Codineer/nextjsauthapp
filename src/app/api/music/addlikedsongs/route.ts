@@ -1,6 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
 import LikedSong from "@/models/likedSong";
-import { connect } from '@/dbconfig/dbConfig'
 import mongoose from "mongoose";
 mongoose.connect(process.env.MONGO_URI!).then(() => {
     console.log('Database connected');

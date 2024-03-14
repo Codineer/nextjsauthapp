@@ -6,7 +6,6 @@ import { PlayIcon, PauseIcon, TrackPreviousIcon, TrackNextIcon, HeartIcon, Heart
 import "./playbar.css";
 import SongContext from '@/contexts/songcontexrt';
 import UserContext from '@/contexts/musiccontext';
-import provideSongs from '@/helpers/providesongs'
 import UidContext from '@/contexts/useridcontext';
 import axios from 'axios';
 const Playbar = () => {
@@ -46,12 +45,6 @@ const Playbar = () => {
     }
     const handleLoadedMetadata = async () => {
         setDuration(audioRef.current.duration)
-        console.log(albumlist[2])
-        if (albumlist[2][1] !== currentSongInfo.album) {
-            console.log("hii")
-            await provideSongs(currentSongInfo.album, albumlist[1], albumlist[3])
-        }
-
     }
 
     useEffect(() => {

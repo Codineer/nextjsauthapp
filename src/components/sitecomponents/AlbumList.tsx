@@ -1,12 +1,28 @@
 'use client'
-import React, { useContext } from 'react'
+import React, { useContext, useEffect } from 'react'
 import UserContext from '@/contexts/musiccontext'
 import Image from 'next/image'
 import SongContext from '@/contexts/songcontexrt'
 import { ScrollArea } from '../ui/scroll-area'
+import provideSongs from '@/helpers/providesongs'
 const AlbumList = () => {
     const albumlist = useContext(UserContext)
+    // const [albumlist, setalbumlist] = useState(second)
     const [currentSongInfo, currentSonginfofucntion]: any = useContext(SongContext)
+    const changeAlbumList = async () => {
+        if (albumlist[2][1] !== currentSongInfo.album) {
+            await provideSongs(currentSongInfo.album, albumlist[1], albumlist[3])
+        }
+
+
+    }
+    useEffect(() => {
+
+        changeAlbumList()
+
+    }, [currentSongInfo])
+
+
 
     return (
         <ScrollArea className="h-[300px] w-full rounded-md">

@@ -4,7 +4,6 @@ import axios from 'axios'
 import { ChevronRight, ChevronLeft } from 'lucide-react'
 import SongContext from '@/contexts/songcontexrt'
 import { ScrollArea } from '../ui/scroll-area'
-import provideSongs from '@/helpers/providesongs'
 import UserContext from '@/contexts/musiccontext'
 const Likedalbums = () => {
     const [noOfSet, setnoOfSet] = useState(0)
@@ -24,7 +23,7 @@ const Likedalbums = () => {
 
         }
         catch (err: any) {
-            console.log(err.data.error)
+            console.log(err.response.data.error)
         }
         finally {
 

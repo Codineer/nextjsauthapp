@@ -99,7 +99,10 @@ export default function MusicPageLayout({
                                             <Link href="/home/likedSongs">
                                                 <DropdownMenuItem>Liked Songs</DropdownMenuItem>
                                             </Link>
-                                            <DropdownMenuItem>Liked Video</DropdownMenuItem>
+                                            <Link href="/home/amvs">
+                                                <DropdownMenuItem>AMV Videos</DropdownMenuItem>
+
+                                            </Link>
                                         </DropdownMenuContent>
                                     </DropdownMenu>
 
