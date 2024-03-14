@@ -105,21 +105,25 @@ export default function MusicPageLayout({
                                     <DropdownMenu>
                                         <DropdownMenuTrigger><GearIcon width={25} height={25} className="cursor-pointer" /></DropdownMenuTrigger>
                                         <DropdownMenuContent>
-                                            <DropdownMenuLabel>My Account</DropdownMenuLabel>
+                                            <DropdownMenuLabel className="cursor-pointer">My Account</DropdownMenuLabel>
                                             <DropdownMenuSeparator />
-                                            <DropdownMenuItem>Profile</DropdownMenuItem>
+                                            <Link href={"/profile"}>
+                                                <DropdownMenuItem className="cursor-pointer">
+                                                    Profile
+                                                </DropdownMenuItem>
+                                            </Link>
                                             <Link href="/changepassword">
-                                                <DropdownMenuItem>Change Password</DropdownMenuItem>
+                                                <DropdownMenuItem className="cursor-pointer">Change Password</DropdownMenuItem>
                                             </Link>
                                             <Link href="/home/likedSongs">
-                                                <DropdownMenuItem>Liked Songs</DropdownMenuItem>
+                                                <DropdownMenuItem className="cursor-pointer">Liked Songs</DropdownMenuItem>
                                             </Link>
                                             <Link href="/home/amvs">
-                                                <DropdownMenuItem>AMV Videos</DropdownMenuItem>
+                                                <DropdownMenuItem className="cursor-pointer">AMV Videos</DropdownMenuItem>
 
                                             </Link>
                                             <div onClick={logout} className="cursor-pointer">
-                                                <DropdownMenuItem>Log Out</DropdownMenuItem>
+                                                <DropdownMenuItem className="cursor-pointer">Log Out</DropdownMenuItem>
                                             </div>
                                         </DropdownMenuContent>
                                     </DropdownMenu>
