@@ -1,6 +1,6 @@
 "use client"
 import Likedalbums from '@/components/sitecomponents/likedalbums'
-const MainPage = () => {
+const Page = () => {
 
 
     return (
@@ -11,4 +11,4 @@ const MainPage = () => {
     )
 }
 
-export default MainPage
+export default Page

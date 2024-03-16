@@ -4,7 +4,7 @@ import ReactPlayer from 'react-player';
 import axios from 'axios';
 import VideoCard from '@/components/sitecomponents/videoCard';
 import Link from 'next/link';
-const MyVideoComponent = () => {
+const Page = () => {
     const [videos, setvideos] = useState([])
     const fetchAllVideos = async () => {
         const res = await axios.post("/api/music/fetchAllVideos", {})
@@ -35,4 +35,4 @@ const MyVideoComponent = () => {
     );
 }
 
-export default MyVideoComponent;
+export default Page;

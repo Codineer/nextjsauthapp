@@ -5,7 +5,7 @@ import axios from 'axios'
 import UserContext from '@/contexts/musiccontext'
 import Link from 'next/link'
 import provideSongs from '@/helpers/providesongs'
-const AlbumPage = () => {
+const Page = () => {
     const [albums, setAlbums] = useState<any>([])
     const albumliststate = useContext(UserContext)
     const pullalbums = async () => {
@@ -47,4 +47,4 @@ const AlbumPage = () => {
     )
 }
 
-export default AlbumPage
+export default Page
