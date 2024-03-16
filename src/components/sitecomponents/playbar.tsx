@@ -55,7 +55,7 @@ const Playbar = () => {
             setisPlaying(true)
 
             audioRef.current.addEventListener("loadedmetadata", handleLoadedMetadata);
-            audioRef.current.play().catch((error) => {
+            audioRef.current.play().catch((error: any) => {
                 console.error('Failed to play audio:', error);
             });
         }
