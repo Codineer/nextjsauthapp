@@ -13,7 +13,9 @@ const Playbar = () => {
     const [isPlaying, setisPlaying] = useState(false)
     const [src, setsrc] = useState("")
     const [liked, setLiked] = useState(false)
-    const audioRef = useRef(new Audio())
+
+    const audioRef: any = useRef(typeof Audio !== 'undefined' ? new Audio() : null);
+
     const [duration, setDuration] = useState(0);
     const [uid] = useContext(UidContext)
     const [currentSongInfo, currentSonginfofucntion]: any = useContext(SongContext)
