@@ -44,7 +44,7 @@ export default function LoginUpPage() {
     }
 
     return (
-        <div className="flex flex-col items-center justify-center min-h-screen bg-slate-500 text-white">
+        <div className="bg-cover bg-center bg-no-repeat bg-custom-background flex flex-col items-center justify-center min-h-screen bg-slate-500 text-white">
             <div className="flex flex-col items-center justify-center bg-black  bg-opacity-90 backdrop-blur-sm  rounded-md p-10">
 
 
