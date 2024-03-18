@@ -56,7 +56,7 @@ export default function LoginUpPage() {
                     type="text"
                     id="email"
                     value={user.email}
-                    onChange={(e) => setUser({ ...user, email: e.currentTarget.value })}
+                    onChange={(e) => setUser({ ...user, email: e.currentTarget.value.toLowerCase() })}
                     placeholder="email" />
                 <label htmlFor="password" className="text-xl pb-2">password</label>
 
